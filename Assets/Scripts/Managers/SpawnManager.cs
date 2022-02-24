@@ -14,11 +14,6 @@ public class SpawnManager : MonoBehaviour
         Instance = this;
     }
 
-    /*private void Start()
-    {
-        SpawnTetromino();
-    }*/
-
     /// <summary>
     /// Spawns a random tetromino at the current postion.
     /// </summary>

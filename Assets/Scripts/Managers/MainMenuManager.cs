@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class MainMenuManager : MonoBehaviour
 {
+    /// <summary>
+    /// Loads the Game Scene.
+    /// </summary>
     public void PlayBtn()
     {
-        Debug.Log("Going");
         LoadManager.GoToGame();
     }
 }

@@ -7,6 +7,9 @@ public static class Starter
 {
     private static bool _isInitalized = false;
 
+    /// <summary>
+    /// This method runs on the first scene load.
+    /// </summary>
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void OnSceneLoad()
     {
@@ -14,11 +17,11 @@ public static class Starter
             return;
 
         GameObject managerObject = new GameObject("GameManager");
-        // Add the load and game managers.
+        // Add the load manager.
         managerObject.AddComponent<LoadManager>();
+        // Adding the event system.
         managerObject.AddComponent<EventSystem>();
         managerObject.AddComponent<StandaloneInputModule>();
-        // Adding the event system.
         Object.DontDestroyOnLoad(managerObject);
         // Start the StartRoutine.
         LoadManager.Instance.StartCoroutine(LoadManager.StartRoutine());

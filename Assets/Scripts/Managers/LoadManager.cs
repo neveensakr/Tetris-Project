@@ -12,12 +12,18 @@ public class LoadManager : MonoBehaviour
         Instance = this;
     }
 
+    /// <summary>
+    /// Initializes the game camera. 
+    /// Loads the LoadingScene.
+    /// Proceeds according to the current scene.
+    /// </summary>
     public static IEnumerator StartRoutine()
     {
         // Creating the game camera.
         GameObject cameraObj = Instantiate(Resources.Load<GameObject>("GameCamera"));
         Object.DontDestroyOnLoad(cameraObj);
 
+        // Loading the LoadingScene.
         yield return Instance.StartCoroutine(LoadScene("LoadingScene"));
 
         // initalizing audio...
@@ -45,17 +51,26 @@ public class LoadManager : MonoBehaviour
 
     public static IEnumerator StartSceneRoutine()
     {
+        // TODO: Add Logo + Start Scene.
         Debug.Log("Start Scene Initalized");
 
         yield break;
     }
 
+    /// <summary>
+    /// Goes to the Menu Scene.
+    /// </summary>
     public static void GoToMenu()
     {
         // Load Menu Scene.
         Instance.StartCoroutine(GoToMenuRoutine());
     }
 
+    /// <summary>
+    /// Unloads unneeded scenes.
+    /// Loads the Menu scene.
+    /// Enables/Disables the Loading Screen.
+    /// </summary>
     public static IEnumerator GoToMenuRoutine()
     {
         LoadingScreenManager.Instance.EnableScreen();
@@ -77,11 +92,19 @@ public class LoadManager : MonoBehaviour
         yield break;
     }
 
+    /// <summary>
+    /// Goes to the game scene.
+    /// </summary>
     public static void GoToGame()
     {
         Instance.StartCoroutine(GoToGameRoutine());
     }
 
+    /// <summary>
+    /// Unloads unneeded scenes.
+    /// Loads the Game scene.
+    /// Enables/Disables the Loading Screen.
+    /// </summary>
     public static IEnumerator GoToGameRoutine()
     {
         LoadingScreenManager.Instance.EnableScreen();
@@ -106,11 +129,17 @@ public class LoadManager : MonoBehaviour
         yield break;
     }
 
+    /// <summary>
+    /// Goes to the End Screen.
+    /// </summary>
     public static void GoToEndScreen()
     {
         Instance.StartCoroutine(GoToEndScreenRoutine());
     }
 
+    /// <summary>
+    /// Loads the End Screen scene.
+    /// </summary>
     public static IEnumerator GoToEndScreenRoutine()
     {
         yield return Instance.StartCoroutine(UnloadScene("EndScreen"));
@@ -128,6 +157,9 @@ public class LoadManager : MonoBehaviour
         yield break;
     }
 
+    /// <summary>
+    /// Unloads the given scene.
+    /// </summary>
     private static IEnumerator UnloadScene(string name)
     {
         if (SceneManager.GetSceneByName(name).isLoaded)
@@ -135,6 +167,9 @@ public class LoadManager : MonoBehaviour
         yield break;
     }
 
+    /// <summary>
+    /// Loads the given scene.
+    /// </summary>
     private static IEnumerator LoadScene(string name)
     {
         if (!SceneManager.GetSceneByName(name).isLoaded)

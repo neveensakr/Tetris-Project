@@ -11,14 +11,21 @@ public class LoadingScreenManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        // The loading screen should be disabled initially as the LoadingScene is always loaded.
         DisableScreen();
     }
 
+    /// <summary>
+    /// Enables the Loading Screen.
+    /// </summary>
     public void EnableScreen()
     {
         _loadingScreen.enabled = true;
     }
 
+    /// <summary>
+    /// Disables the Loading Screen.
+    /// </summary>
     public void DisableScreen()
     {
         _loadingScreen.enabled = false;
