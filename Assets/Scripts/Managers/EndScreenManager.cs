@@ -5,7 +5,7 @@ using UnityEngine;
 public class EndScreenManager : MonoBehaviour
 {
     /// <summary>
-    /// This restarts the game.
+    /// This restarts the game
     /// </summary>
     public void RestartBtn()
     {
