@@ -6,7 +6,8 @@ public class TetrisGrid : MonoBehaviour
 {
     public static int GridWidth = 10;
     public static int GridHeight = 20;
-    public static Transform[,] GridArray = new Transform[GridWidth, GridHeight]; // Initializes the grid array using the width and height properties.
+    // Initializes the grid array using the width and height properties.
+    public static Transform[,] GridArray = new Transform[GridWidth, GridHeight]; 
 
     /// <summary>
     /// Deletes the blocks at the given row.
@@ -71,7 +72,8 @@ public class TetrisGrid : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks if a row is full. If it is, it deletes it and shifts the rows above downwards.
+    /// Checks if a row is full. 
+    /// If it is, it deletes it and shifts the rows above downwards.
     /// </summary>
     public static void DeleteFullRows()
     {
@@ -87,7 +89,8 @@ public class TetrisGrid : MonoBehaviour
     }
 
     /// <summary>
-    /// Rounds a Vector2 to the nearest integers. This helps in calculating grid positions.
+    /// Rounds a Vector2 to the nearest integers. 
+    /// This helps in calculating grid positions.
     /// </summary>
     /// <param name="position">Vector to round</param>
     public static Vector2Int RoundVector(Vector2 position)
