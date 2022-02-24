@@ -7,7 +7,7 @@ public class TetrisGrid : MonoBehaviour
     public static int GridWidth = 10;
     public static int GridHeight = 20;
     // Initializes the grid array using the width and height properties.
-    public static Transform[,] GridArray = new Transform[GridWidth, GridHeight]; 
+    public static Transform[,] GridArray = new Transform[GridWidth, GridHeight];
 
     /// <summary>
     /// Deletes the blocks at the given row.

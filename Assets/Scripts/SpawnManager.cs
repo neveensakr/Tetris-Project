@@ -28,20 +28,4 @@ public class SpawnManager : MonoBehaviour
         Instantiate(_tetrominoGroups[randomIndex], transform.position, Quaternion.identity);
     }
 
-    // FOR DEBUG PURPOSES...
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(new Vector3(4.5f, 9.5f), new Vector2(TetrisGrid.GridWidth, TetrisGrid.GridHeight));
-        for (int i = 0; i < TetrisGrid.GridWidth; i++)
-        {
-            for (int j = 0; j < TetrisGrid.GridHeight; j++)
-            {
-                if (TetrisGrid.GridArray[i, j] != null)
-                    Gizmos.color = Color.red;
-                else
-                    Gizmos.color = Color.blue;
-                Gizmos.DrawSphere(new Vector3(i, j, 0), 0.5f);
-            }
-        }
-    }
 }
