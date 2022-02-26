@@ -4,8 +4,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool GameOver { get; private set;  }
     private static int _score;
-    
+
+    /// <summary>
+    /// This function is called when the game is over.
+    /// It pauses the game and Loads the End screen.
+    /// </summary>
+    public static void GameEnded()
+    {
+        GameOver = true;
+        Time.timeScale = 0;
+        LoadManager.GoToEndScreen();
+    }
+
     /// <summary>
     /// This updates the score variable in the GameManager.
     /// This calls the HudManager's Update score function.
@@ -23,6 +35,8 @@ public class GameManager : MonoBehaviour
     public static void StartGame()
     {
         SpawnManager.Instance.SpawnTetromino();
+        Time.timeScale = 1;
+        GameOver = false;
     }
 
     /// <summary>

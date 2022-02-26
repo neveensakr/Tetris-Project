@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tetromino : MonoBehaviour
 {
+    public bool CanBeControlled = true;
     private bool _hasLanded = false;
     private float _fallingTime = 1.5f;
 
@@ -11,12 +12,18 @@ public class Tetromino : MonoBehaviour
     {
         // Fall down
         InvokeRepeating("MoveDown", 0.1f, _fallingTime);
+        // If we collide with another block, game over.
+        if (!CheckTetrominoPos())
+        {
+            CanBeControlled = false;
+            GameManager.GameEnded();
+        }
     }
 
     private void Update()
     {
         // If the tetromino did not land yet, we can control it.
-        if (!_hasLanded)
+        if (!_hasLanded && CanBeControlled)
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
                 Move(new Vector3(-1, 0, 0)); // Move Left
@@ -116,8 +123,10 @@ public class Tetromino : MonoBehaviour
     private void Landed()
     {
         TetrisGrid.DeleteFullRows(); // Remove any completed rows 
-        SpawnManager.Instance.SpawnTetromino(); // Spawn another tetromino as this one landed.
+        if (!GameManager.GameOver) // Don't spawn another tetromino if Game Over.
+            SpawnManager.Instance.SpawnTetromino(); // Spawn another tetromino as this one landed.
         _hasLanded = true;
+        CanBeControlled = false;
         CancelInvoke("MoveDown"); // Stop Falling.
     }
 
