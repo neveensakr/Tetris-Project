@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         LoadManager.GoToEndScreen();
         if (_score > _highscore)
             SetHighscore(_score);
+        SpawnManager.Instance.CancelInvoke(); // Stop spawning blocker blocks.
     }
 
     /// <summary>

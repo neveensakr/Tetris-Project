@@ -10,6 +10,14 @@ public class TetrisGrid : MonoBehaviour
     public static Transform[,] GridArray = new Transform[GridWidth, GridHeight];
 
     /// <summary>
+    /// Return a Vector2 of a random position on the grid.
+    /// </summary>
+    public static Vector2 GetRandomPosition()
+    {
+        return new Vector2(Random.Range(0, GridWidth), Random.Range(0, GridWidth));
+    }
+
+    /// <summary>
     /// Deletes the blocks at the given row.
     /// </summary>
     /// <param name="rowYIndex">The y index of the row in the GridArray.</param>
@@ -60,8 +68,8 @@ public class TetrisGrid : MonoBehaviour
 
         for (int i = 0; i < GridWidth; i++)
         {
-            // If one of the blocks if null (an empty space), break.
-            if (GridArray[i, rowYIndex] == null)
+            // If one of the blocks if null (an empty space) or a blocker block, break.
+            if (GridArray[i, rowYIndex] == null || GridArray[i, rowYIndex].GetComponentInParent<BlockerBlock>() != null)
             {
                 isFull = false;
                 break;

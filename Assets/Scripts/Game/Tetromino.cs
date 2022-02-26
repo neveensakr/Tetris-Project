@@ -8,6 +8,9 @@ public class Tetromino : MonoBehaviour
     private bool _hasLanded = false;
     private float _fallingTime = 1.5f;
 
+    /// <summary>
+    /// This Invokes the MoveDown function and checks if the game is over.
+    /// </summary>
     public void SetUp()
     {
         InvokeRepeating("MoveDown", 0.1f, _fallingTime); // Fall down
@@ -50,7 +53,7 @@ public class Tetromino : MonoBehaviour
     /// valid (within the grid borders and not overlapping another blocks).
     /// </summary>
     /// <returns>True if the Tetromino is in a valid position.</returns>
-    private bool CheckTetrominoPos()
+    public bool CheckTetrominoPos()
     {
         foreach (Transform block in transform.GetComponentsInChildren<Transform>())
         {
@@ -74,7 +77,7 @@ public class Tetromino : MonoBehaviour
     /// Updates the value of the tetromino blocks in the Grid. 
     /// This happens when a Tetromino changes position.
     /// </summary>
-    private void UpdateTetrominoInGrid()
+    public void UpdateTetrominoInGrid()
     {
         // Remove any blocks from this tetromino from the grid.
         for (int y = 0; y < TetrisGrid.GridHeight; y++)
