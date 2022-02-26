@@ -84,6 +84,7 @@ public class TetrisGrid : MonoBehaviour
                 DeleteRow(y);
                 ShiftDown(y+1); // Shift down from the row above as the current row no longer exists.
                 --y; // skip the row that we just deleted in the loop.
+                GameManager.UpdateScore(100); // Update the score.
             }
         }
     }

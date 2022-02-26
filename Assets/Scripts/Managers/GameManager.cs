@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private static int _score;
+    
+    /// <summary>
+    /// This updates the score variable in the GameManager.
+    /// This calls the HudManager's Update score function.
+    /// </summary>
+    /// <param name="toAdd">Value to add to the existing score.</param>
+    public static void UpdateScore(int toAdd)
+    {
+        _score += toAdd;
+        HudManager.Instance.UpdateScore(_score);
+    }
+
     /// <summary>
     /// This spawns the first tetromino to start the game.
     /// </summary>
@@ -20,32 +33,4 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Ended");
     }
 
-    /// <summary>
-    /// This restarts the game.
-    /// </summary>
-    public void RestartBtn()
-    {
-        LoadManager.GoToGame();
-    }
-
-    /// <summary>
-    /// This pauses the game depending on the pause value.
-    /// </summary>
-    /// <param name="pause">Should the game be paused?</param>
-    public void PauseGame(bool pause)
-    {
-        Time.timeScale = pause ? 0 : 1;
-    }
-
-    /// <summary>
-    /// This quits the game in both the editor and the application (when built).
-    /// </summary>
-    public void QuitBtn()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-         Application.Quit();
-#endif
-    }
 }
