@@ -8,12 +8,12 @@ public class Tetromino : MonoBehaviour
     private bool _hasLanded = false;
     private float _fallingTime = 1.5f;
 
-    private void Start()
+    public void SetUp()
     {
-        // Fall down
-        InvokeRepeating("MoveDown", 0.1f, _fallingTime);
+        InvokeRepeating("MoveDown", 0.1f, _fallingTime); // Fall down
+
         // If we collide with another block, game over.
-        if (!CheckTetrominoPos())
+        if (CanBeControlled && !CheckTetrominoPos())
         {
             CanBeControlled = false;
             GameManager.GameEnded();
@@ -59,7 +59,8 @@ public class Tetromino : MonoBehaviour
             if (!TetrisGrid.BorderCheck(blockPos))
                 return false;
             // If there is another block at the same place.
-            if (TetrisGrid.GridArray[blockPos.x, blockPos.y] != null) {
+            if (TetrisGrid.GridArray[blockPos.x, blockPos.y] != null)
+            {
                 // We check the parent of the block so that when a tetromnio shifts place, it does not get affected by its own blocks.
                 if (TetrisGrid.GridArray[blockPos.x, blockPos.y].parent != transform)
                     return false;
@@ -136,7 +137,7 @@ public class Tetromino : MonoBehaviour
     /// </summary>
     private void MoveDown()
     {
-       Move(new Vector3(0, -1, 0));
+        Move(new Vector3(0, -1, 0));
     }
-   
+
 }

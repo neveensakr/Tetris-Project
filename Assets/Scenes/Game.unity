@@ -1209,6 +1209,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 787754225}
   m_CullTransparentMesh: 1
+--- !u!1 &921820952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 921820953}
+  m_Layer: 0
+  m_Name: NextBlock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &921820953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921820952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.9, y: 14.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &934055061
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,6 +2205,8 @@ MonoBehaviour:
   - {fileID: 4616106617125124394, guid: a43bc6e5c0b4a4f448f86cff8a3d902c, type: 3}
   - {fileID: 4883621946187351433, guid: f0352dbd1138f6641913b44e1fa8003b, type: 3}
   - {fileID: 989004449829993122, guid: a587e1c7d7ae0784eb03b1db9c661422, type: 3}
+  _nextBlockPos: {fileID: 921820953}
+  NextBlock: {fileID: 0}
 --- !u!1 &1413860752
 GameObject:
   m_ObjectHideFlags: 0

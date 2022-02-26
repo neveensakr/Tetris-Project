@@ -9,6 +9,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _tetrominoGroups;
 
+    [SerializeField]
+    private Transform _nextBlockPos;
+
+    public Tetromino NextBlock;
+
     private void Awake()
     {
         Instance = this;
@@ -20,7 +25,17 @@ public class SpawnManager : MonoBehaviour
     public void SpawnTetromino()
     {
         int randomIndex = Random.Range(0, _tetrominoGroups.Length - 1);
-        Instantiate(_tetrominoGroups[randomIndex], transform.position, Quaternion.identity);
+        if (NextBlock == null)
+            Instantiate(_tetrominoGroups[randomIndex], transform.position, Quaternion.identity).GetComponent<Tetromino>().SetUp(); // Spawn the current one.
+        else
+        {
+            NextBlock.gameObject.transform.position = transform.position;
+            NextBlock.CanBeControlled = true;
+            NextBlock.SetUp();
+        }
+
+        NextBlock = Instantiate(_tetrominoGroups[randomIndex], _nextBlockPos.position, Quaternion.identity).GetComponent<Tetromino>();
+        NextBlock.CanBeControlled = false;
     }
 
 }
