@@ -2198,6 +2198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _blockingTetromino: {fileID: 474614464103242263, guid: e5d53176325161e49960e33194bf7613, type: 3}
+  _powerupTetromino: {fileID: 2630570669859262340, guid: 3f75683958ea3da489757a2fdff10adf, type: 3}
   _tetrominoGroups:
   - {fileID: 2000331698781499330, guid: 27bebce53fbd39c479401d6c42194bdd, type: 3}
   - {fileID: 1822832249239013, guid: e1f5c6bf6e6c93a4883aa3e86262d427, type: 3}

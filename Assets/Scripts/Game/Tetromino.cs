@@ -61,11 +61,19 @@ public class Tetromino : MonoBehaviour
             // If the current block is outside the grid.
             if (!TetrisGrid.BorderCheck(blockPos))
                 return false;
+
             // If there is another block at the same place.
             if (TetrisGrid.GridArray[blockPos.x, blockPos.y] != null)
             {
+                // If there is a powerup, collect it.
+                if (TetrisGrid.GridArray[blockPos.x, blockPos.y].GetComponentInParent<PowerUpBlock>() != null)
+                {
+                    Destroy(TetrisGrid.GridArray[blockPos.x, blockPos.y].gameObject); // remove the powerup.
+                    TetrisGrid.GridArray[blockPos.x, blockPos.y] = null; // reset its position in the grid.
+                    GameManager.UpdateScore(50); // update the score.
+                }
                 // We check the parent of the block so that when a tetromnio shifts place, it does not get affected by its own blocks.
-                if (TetrisGrid.GridArray[blockPos.x, blockPos.y].parent != transform)
+                else if (TetrisGrid.GridArray[blockPos.x, blockPos.y].parent != transform)
                     return false;
             }
         }

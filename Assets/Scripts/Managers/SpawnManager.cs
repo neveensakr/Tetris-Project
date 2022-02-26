@@ -10,6 +10,9 @@ public class SpawnManager : MonoBehaviour
     private GameObject _blockingTetromino;
 
     [SerializeField]
+    private GameObject _powerupTetromino;
+
+    [SerializeField]
     private GameObject[] _tetrominoGroups;
 
     [SerializeField]
@@ -24,8 +27,8 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        // Spawn a blocker block every 30 seconds.
-        InvokeRepeating("SpawnBlockingTetromino", 8.0f, 30.0f);
+        // Spawn a special block every 30 seconds.
+        InvokeRepeating("SpawnSpecialTetromino", 8.0f, 30.0f);
     }
 
     /// <summary>
@@ -33,7 +36,7 @@ public class SpawnManager : MonoBehaviour
     /// </summary>
     public void SpawnTetromino()
     {
-        int randomIndex = Random.Range(0, _tetrominoGroups.Length - 1);
+        int randomIndex = Random.Range(0, _tetrominoGroups.Length);
         if (NextBlock == null) // If there is no next block (first time to spawn), spawn a new one.
             Instantiate(_tetrominoGroups[randomIndex], transform.position, Quaternion.identity).GetComponent<Tetromino>().SetUp();
         else // Otherwise, use the existing next one.
@@ -51,9 +54,15 @@ public class SpawnManager : MonoBehaviour
     /// This function spawn a blocking tetromino.
     /// This function gets invoked repeatedly.
     /// </summary>
-    public void SpawnBlockingTetromino()
+    public void SpawnSpecialTetromino()
     {
-        Tetromino block = Instantiate(_blockingTetromino, TetrisGrid.GetRandomPosition(), Quaternion.identity).GetComponent<Tetromino>();
+        int randomIndex = Random.Range(0, 2);
+        Tetromino block;
+        if (randomIndex == 0)
+            block = Instantiate(_powerupTetromino, TetrisGrid.GetRandomPosition(), Quaternion.identity).GetComponent<Tetromino>();
+        else
+            block = Instantiate(_blockingTetromino, TetrisGrid.GetRandomPosition(), Quaternion.identity).GetComponent<Tetromino>();
+
         while (!block.CheckTetrominoPos())
         {
             block.gameObject.transform.position = TetrisGrid.GetRandomPosition();
@@ -61,5 +70,4 @@ public class SpawnManager : MonoBehaviour
         block.CanBeControlled = false;
         block.UpdateTetrominoInGrid();
     }
-
 }
