@@ -6,6 +6,27 @@ public class GameManager : MonoBehaviour
 {
     public static bool GameOver { get; private set;  }
     private static int _score;
+    private static int _highscore = 0;
+
+    /// <summary>
+    /// This sets the highscore value in the PlayerPrefs and updates the HUD.
+    /// </summary>
+    /// <param name="newValue">New Highscore</param>
+    private static void SetHighscore(int newValue)
+    {
+        _highscore = newValue;
+        PlayerPrefs.SetInt("highscore", _highscore);
+        PlayerPrefs.Save();
+        HudManager.Instance.UpdateHighscore(_highscore);
+    }
+
+    /// <summary>
+    /// This returns the current highscore in PlayerPrefs.
+    /// </summary>
+    private static int GetHighscore()
+    {
+        return PlayerPrefs.GetInt("highscore");
+    }
 
     /// <summary>
     /// This function is called when the game is over.
@@ -16,6 +37,8 @@ public class GameManager : MonoBehaviour
         GameOver = true;
         Time.timeScale = 0;
         LoadManager.GoToEndScreen();
+        if (_score > _highscore)
+            SetHighscore(_score);
     }
 
     /// <summary>
@@ -35,16 +58,12 @@ public class GameManager : MonoBehaviour
     public static void StartGame()
     {
         SpawnManager.Instance.SpawnTetromino();
+        // Reset values.
         Time.timeScale = 1;
         GameOver = false;
-    }
-
-    /// <summary>
-    /// TODO: take care of the score here.
-    /// </summary>
-    public static void EndGame()
-    {
-        Debug.Log("Game Ended");
+        _score = 0;
+        _highscore = GetHighscore();
+        HudManager.Instance.UpdateHighscore(_highscore); // Updates the highscore in the HUD.
     }
 
 }

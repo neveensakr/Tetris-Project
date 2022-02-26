@@ -149,9 +149,6 @@ public class LoadManager : MonoBehaviour
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("EndScreen"));
 
-        // Call a setup function in Game Manager.
-        GameManager.EndGame();
-
         Debug.Log("End Screen Initalized.");
 
         yield break;

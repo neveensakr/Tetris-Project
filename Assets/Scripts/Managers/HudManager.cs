@@ -7,6 +7,8 @@ public class HudManager : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI _scoreText;
+    [SerializeField]
+    private TextMeshProUGUI _highscoreText;
 
     public static HudManager Instance;
 
@@ -22,6 +24,11 @@ public class HudManager : MonoBehaviour
     public void UpdateScore(int score)
     {
         _scoreText.text = score.ToString();
+    }
+
+    public void UpdateHighscore(int score)
+    {
+        _highscoreText.text = score.ToString();
     }
 
     /// <summary>
