@@ -55,8 +55,10 @@ public class HudManager : MonoBehaviour
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-#else
+#elif (UNITY_STANDALONE) 
          Application.Quit();
+#elif (UNITY_WEBGL)
+    Application.OpenURL("about:blank");
 #endif
     }
 }

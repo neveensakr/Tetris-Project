@@ -6,7 +6,7 @@ public class Tetromino : MonoBehaviour
 {
     public bool CanBeControlled = true;
     private bool _hasLanded = false;
-    private float _fallingTime = 1.5f;
+    private float _fallingTime = 0.5f;
 
     /// <summary>
     /// This Invokes the MoveDown function and checks if the game is over.

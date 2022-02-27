@@ -5,10 +5,12 @@
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+
+# Usually, Builds are not included in git repos, but I included them for reference.
+#/[Bb]uild/
+#/[Bb]uilds/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
